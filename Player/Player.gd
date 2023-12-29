@@ -3,10 +3,14 @@ extends CharacterBody3D
 const SENSITIVITY = 0.01
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const HITSTAGGER = 8.0 
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
 var gravity = 9.8
+
+signal player_hit
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -15,7 +19,12 @@ func _unhandled_input(event):
 	if event is InputEventMouse:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(75))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
+
+func Hit(dir):
+	emit_signal("player_hit")
+	velocity += dir * HITSTAGGER
+	pass
 		
 func _physics_process(delta):
 	# Add the gravity.

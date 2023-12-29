@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwp8066j1v6jq"]
+
+[ext_resource type="Script" path="res://Enemies/WalkerEnemy.gd" id="1_dseqi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dddog"]
+points = PackedVector3Array(0.5, 0.74404, 0.5, -0.5, -0.74404, -0.5, 0.5, -0.74404, -0.5, -0.5, -0.74404, 0.5, -0.5, 0.74404, -0.5, 0.5, -0.74404, 0.5, 0.5, 0.74404, -0.5, -0.5, 0.74404, 0.5)
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_dseqi")
+playerPos = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_b3u8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_dddog")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="calcPath" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="calcPath" to="." method="_on_calc_path_timeout"]

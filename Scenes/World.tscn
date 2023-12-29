@@ -1,45 +1,93 @@
-[gd_scene load_steps=7 format=3 uid="uid://7ca4fhbx6b3g"]
+[gd_scene load_steps=11 format=3 uid="uid://7ca4fhbx6b3g"]
 
 [ext_resource type="PackedScene" uid="uid://ckmnya8f8xdtb" path="res://Player/Player.tscn" id="1_0kwpd"]
+[ext_resource type="Script" path="res://Scenes/World.gd" id="1_vnnxa"]
+[ext_resource type="PackedScene" uid="uid://dwp8066j1v6jq" path="res://Enemies/Enemy.tscn" id="2_cj416"]
+
+[sub_resource type="Sky" id="Sky_2xys1"]
+
+[sub_resource type="Environment" id="Environment_7j0ry"]
+background_mode = 2
+sky = SubResource("Sky_2xys1")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 1, 1)
+reflected_light_source = 2
+ssr_enabled = true
+ssao_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_sun_scatter = 0.1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.016
+volumetric_fog_length = 9.1
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0nikj"]
+vertices = PackedVector3Array(0.25, 0.94126, -7.75, 1.5, 0.94126, -7.75, 1.25, 0.94126, -24.5, -24.5, 0.94126, -24.5, -24.5, 0.94126, -8, 1.5, 0.94126, -7.75, 8, 0.94126, -7.75, 8.25, 0.94126, -24.5, 1.25, 0.94126, -24.5, 9.5, 0.94126, -7.75, 9.75, 0.94126, -6.25, 24.5, 0.94126, -6.25, 24.5, 0.94126, -24.5, 8.25, 0.94126, -24.5, 8.25, 0.94126, -24.5, 8, 0.94126, -7.75, 9.5, 0.94126, -7.75, 0.5, 0.94126, -1.5, 0.75, 0.94126, -4.75, -0.25, 0.94126, -5, -1, 0.94126, -1.25, -0.25, 0.94126, -7.5, 0.25, 0.94126, -7.75, -24.5, 0.94126, -8, -1, 0.94126, -1.25, -0.25, 0.94126, -5, -0.25, 0.94126, -7.5, -24.5, 0.94126, -8, -24.5, 0.94126, 0.75, -24.5, 0.94126, 0.75, -1, 0.94126, 0.75, -1, 0.94126, -1.25, 0.75, 4.69126, -6.75, 0.75, 4.69126, -5.75, 8.75, 4.69126, -5.75, 8.75, 4.69126, -6.75, 1, 0.94126, -6.5, 1, 0.94126, -6, 8.5, 0.94126, -6, 8.5, 0.94126, -6.5, 0.75, 0.94126, -4.75, 0.5, 0.94126, -1.5, 1.25, 0.94126, -1.25, 9.5, 0.94126, -4.75, 24.5, 0.94126, -6.25, 9.5, 0.94126, -4.75, 1.25, 0.94126, 5.5, 0.25, 0.94126, 24.5, 24.5, 0.94126, 24.5, 9.5, 0.94126, -4.75, 1.25, 0.94126, -1.25, 1.25, 0.94126, 5.5, 24.5, 0.94126, -6.25, 9.75, 0.94126, -6.25, 9.5, 0.94126, -4.75, 1.25, 0.94126, 5.5, 0.25, 0.94126, 5.75, 0.25, 0.94126, 24.5, -24.5, 0.94126, 3.5, -1, 0.94126, 3.5, -1, 0.94126, 0.75, -24.5, 0.94126, 0.75, 0.25, 0.94126, 24.5, 0.25, 0.94126, 5.75, -1, 0.94126, 5.5, -24.5, 0.94126, 3.5, -24.5, 0.94126, 24.5, -1, 0.94126, 5.5, -1, 0.94126, 3.5, -24.5, 0.94126, 3.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(5, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(27, 24, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(35, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(39, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(47, 44, 48), PackedInt32Array(51, 50, 49), PackedInt32Array(54, 53, 52), PackedInt32Array(57, 56, 55), PackedInt32Array(61, 60, 58), PackedInt32Array(58, 60, 59), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 66), PackedInt32Array(64, 66, 65), PackedInt32Array(69, 68, 67)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5tmfq"]
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w3thq"]
 
-[sub_resource type="Environment" id="Environment_7j0ry"]
-background_mode = 2
-ambient_light_color = Color(0, 0, 1, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxpb3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl104"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_vnnxa")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.810042, -0.516772, 0.277091, 0, 0.472551, 0.881303, -0.586372, 0.713893, -0.382786, 0, 0, 0)
+transform = Transform3D(-0.810042, -0.516772, 0.277091, 0, 0.472551, 0.881303, -0.586372, 0.713893, -0.382786, 0, 1.0768, 0)
+light_color = Color(0.639216, 0.756863, 1, 1)
 shadow_enabled = true
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_5tmfq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
-mesh = SubResource("BoxMesh_w3thq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7j0ry")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0nikj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_5tmfq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_w3thq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 5.20491, 0, 0, 0, 5.94531, 0, 1.50066, 2.13645)
+use_collision = true
+material = SubResource("StandardMaterial3D_xxpb3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(8.81925, 0, 0, 0, 6.11748, 0, 0, 0, 1.89727, 4.83801, 1.25, -6.2705)
+use_collision = true
+material = SubResource("StandardMaterial3D_dl104")
+
 [node name="Player" parent="." instance=ExtResource("1_0kwpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.47646, -3)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 5.20491, 0, 0, 0, 5.94531, 0, 1.50066, 2.13645)
-material = SubResource("StandardMaterial3D_xxpb3")
+[node name="Enemy" parent="." instance=ExtResource("2_cj416")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4765, 1.24404, -4.83118)
+playerPos = NodePath("../Player")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(8.81925, 0, 0, 0, 6.11748, 0, 0, 0, 1.89727, 4.83801, 1.25, -6.2705)
-material = SubResource("StandardMaterial3D_dl104")
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HitRect" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = -342.0
+offset_top = -424.0
+offset_right = 1358.0
+offset_bottom = 718.0
+color = Color(1, 0, 0, 0.494118)
+
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
