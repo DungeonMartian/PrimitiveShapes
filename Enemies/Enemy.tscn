@@ -23,7 +23,6 @@ shape = SubResource("ConvexPolygonShape3D_es1cc")
 path_desired_distance = 1.35
 target_desired_distance = 1.35
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="calcPath" type="Timer" parent="."]
 wait_time = 0.2

@@ -28,20 +28,20 @@ transform = Transform3D(0.170284, 0, 0, 0, 0.170284, 0, 0, 0, 1.0015, 0, 0, -0.0
 modulate = Color(0.231373, 0.231373, 0.231373, 0.631373)
 texture = SubResource("PlaceholderTexture2D_yahmm")
 
-[node name="RayContainer" type="Node3D" parent="Head/Camera3D/Aim"]
-transform = Transform3D(5.87254, 0, 0, 0, 5.87254, 0, 0, 0, 0.998502, 0, -0.68391, -0.384402)
+[node name="RayContainer" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6358, -0.197225)
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/Aim/RayContainer"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/RayContainer"]
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3D/Aim/RayContainer"]
+[node name="RayCast3D2" type="RayCast3D" parent="Head/RayContainer"]
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D3" type="RayCast3D" parent="Head/Camera3D/Aim/RayContainer"]
+[node name="RayCast3D3" type="RayCast3D" parent="Head/RayContainer"]
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D4" type="RayCast3D" parent="Head/Camera3D/Aim/RayContainer"]
+[node name="RayCast3D4" type="RayCast3D" parent="Head/RayContainer"]
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D5" type="RayCast3D" parent="Head/Camera3D/Aim/RayContainer"]
+[node name="RayCast3D5" type="RayCast3D" parent="Head/RayContainer"]
 target_position = Vector3(0, 0, -100)

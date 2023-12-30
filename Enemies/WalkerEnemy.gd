@@ -9,6 +9,7 @@ var curPosz
 var newPosz
 
 var canJump
+var dying = false
 
 var JUMP_VELOCITY = 15.0 
 var gravity =12
@@ -17,7 +18,8 @@ var health = 3
 var speed = 5.0
 var accel = 10
 
-@export var playerPos:NodePath
+#@export var playerPos:NodePath
+@export var playerPos:= "../../Player"
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
 func _ready():
@@ -25,27 +27,36 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	
-	var current_location = global_transform.origin
-	var next_location = nav.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized() * speed
-	new_velocity = Vector3i(new_velocity.x ,-gravity, new_velocity.z)
-	nav.set_velocity(new_velocity)
-	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
+	if health <=0 && !dying:
+		rotation.z = lerp(rotation.z, randf_range(60,180),  delta/25)
+		die(delta)
+	if !dying:
+		var current_location = global_transform.origin
+		var next_location = nav.get_next_path_position()
+		var new_velocity = (next_location - current_location).normalized() * speed
+		new_velocity = Vector3i(new_velocity.x ,-gravity, new_velocity.z)
+		nav.set_velocity(new_velocity)
+		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
 
+	if dying && !is_on_floor():
+		velocity. y -= gravity
 	
 	
 	#if not is_on_floor():
 	#	velocity.y -= gravity * delta
-		
-	if is_on_floor():
-		canJump = true
-		$jumpTimer.paused = false
+			
+		if is_on_floor():
+			canJump = true
+			$jumpTimer.paused = false
 
 func update_target_location(target_location):
 	nav.target_position = target_location
 
-
+func die(delta):
+	dying = true
+	await get_tree().create_timer(0.4).timeout
+	queue_free()
+	pass
 
 
 func _on_navigation_agent_3d_target_reached():
@@ -56,8 +67,9 @@ func _on_navigation_agent_3d_target_reached():
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
-	velocity = velocity.move_toward(safe_velocity, .5)
-	move_and_slide()
+	if !dying:
+		velocity = velocity.move_toward(safe_velocity, .5)
+		move_and_slide()
 
 func tryJump():
 	
@@ -72,11 +84,12 @@ func tryJump():
 
 
 func _on_jump_timer_timeout():
-	newPosx = curPosx
-	newPosz = curPosz
-	curPosx = round(global_position.x)
-	curPosz = round(global_position.z)
-	if (newPosx == curPosx) && (newPosz == curPosz) && canJump:
-		tryJump()
-		$jumpTimer.paused = true
-	pass # Replace with function body.
+	if !dying:
+		newPosx = curPosx
+		newPosz = curPosz
+		curPosx = round(global_position.x)
+		curPosz = round(global_position.z)
+		if (newPosx == curPosx) && (newPosz == curPosz) && canJump:
+			tryJump()
+			$jumpTimer.paused = true
+	

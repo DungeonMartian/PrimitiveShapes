@@ -12,7 +12,7 @@ var headDir
 var canDash =1 
 var spread = 10
 
-@onready var ray_container = $Head/Camera3D/Aim/RayContainer
+@onready var ray_container = $Head/RayContainer
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
@@ -34,7 +34,6 @@ func shootGun():
 		r.target_position.x = randf_range(spread, -spread)
 		r.target_position.y = randf_range(spread, -spread)
 		b.look_at((r.get_collision_point()))
-		b.look_at((r.get_collision_point()))
 		b.shoot = true
 
 
@@ -45,7 +44,8 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
-	
+		ray_container.rotate_x(-event.relative.y * SENSITIVITY)
+		ray_container.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
 	
 	
 func Hit(dir):
