@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxm0cm5xrbrpu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nukdk"]
+albedo_color = Color(0.258824, 0.258824, 0.258824, 1)
+metallic = 0.88
+metallic_specular = 0.69
+roughness = 0.67
+rim_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljyin"]
+material = SubResource("StandardMaterial3D_nukdk")
+size = Vector3(100, 300, 100)
+
+[node name="BgPillars" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+mesh = SubResource("BoxMesh_ljyin")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ju7jmtlvibf2"]
+
+[ext_resource type="Material" uid="uid://bx7767x0cm2oy" path="res://Enemies/Materials/damageEnemy.tres" id="1_e1rgi"]
+[ext_resource type="Script" path="res://Effects/RubbleParticle.gd" id="2_tchcq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfgw8"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.23
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_oanqp"]
+material = ExtResource("1_e1rgi")
+
+[node name="RubbleParticle" type="GPUParticles3D"]
+explosiveness = 0.07
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tfgw8")
+draw_pass_1 = SubResource("BoxMesh_oanqp")
+script = ExtResource("2_tchcq")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

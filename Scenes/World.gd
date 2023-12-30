@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var player = $Player
 @onready var hit_rect = $UI/HitRect
+const JUMP_VELOCITY = 7.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rx3nopad48kj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq3f7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_img42"]
 albedo_color = Color(0.145098, 0.145098, 0.145098, 1)
 albedo_texture_force_srgb = true
 albedo_texture_msdf = true
@@ -10,18 +10,16 @@ roughness = 0.77
 rim_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pfws"]
-material = SubResource("StandardMaterial3D_gq3f7")
+material = SubResource("StandardMaterial3D_img42")
 size = Vector3(1, 3, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_502ma"]
 points = PackedVector3Array(0.5, 1.45426, 0.5, -0.5, -1.45426, -0.5, -0.5, -1.45426, 0.5, -0.5, 1.45426, -0.5, 0.5, -1.45426, -0.5, 0.5, -1.45426, 0.5, -0.5, 1.45426, 0.5, 0.5, 1.45426, -0.5)
 
-[node name="Wall" type="StaticBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="PillarMesh" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_5pfws")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="Pillar" type="StaticBody3D" parent="."]
+
+[node name="PillarCol" type="CollisionShape3D" parent="Pillar"]
 shape = SubResource("ConvexPolygonShape3D_502ma")

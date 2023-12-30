@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwp8066j1v6jq"]
+[gd_scene load_steps=4 format=3 uid="uid://dwp8066j1v6jq"]
 
 [ext_resource type="Script" path="res://Enemies/WalkerEnemy.gd" id="1_dseqi"]
-[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="3_liqn6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
-material = ExtResource("3_liqn6")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_es1cc"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
@@ -13,7 +11,6 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 script = ExtResource("1_dseqi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = ExtResource("3_liqn6")
 mesh = SubResource("BoxMesh_b3u8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -30,7 +27,6 @@ wait_time = 0.2
 autostart = true
 
 [node name="jumpTimer" type="Timer" parent="."]
-wait_time = 0.75
 autostart = true
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
