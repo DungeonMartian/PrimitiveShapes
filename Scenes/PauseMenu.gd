@@ -8,16 +8,21 @@ extends ColorRect
 
 func unpause():
 	animPlayer.play("Unpause")
-	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	get_tree().paused = false
+	
 
 func pause():
+	visible = true
 	animPlayer.play("Pause")
-	get_tree().paused=true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused=true
+	
 
 
 func _on_resume_button_pressed():
+	visible= false
 	unpause()
 	pass # Replace with function body.
 

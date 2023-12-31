@@ -18,6 +18,7 @@ var reloaded = true
 @onready var camera = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
 
+
 var gravity = 9.8
 var fov =85
 
@@ -42,7 +43,7 @@ func shootGun():
 
 
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -57,8 +58,7 @@ func Hit(dir):
 	pass
 		
 func _physics_process(delta):
-	if Input.is_action_just_pressed("pause"):
-		$PauseMenu.pause()
+	
 		
 	if Input.is_action_just_pressed("shoot") && reloaded == true:
 		shootGun()

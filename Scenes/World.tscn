@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://7ca4fhbx6b3g"]
+[gd_scene load_steps=14 format=3 uid="uid://7ca4fhbx6b3g"]
 
 [ext_resource type="PackedScene" uid="uid://ckmnya8f8xdtb" path="res://Player/Player.tscn" id="1_0kwpd"]
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_vnnxa"]
+[ext_resource type="PackedScene" uid="uid://bsfqqe7k8p3ld" path="res://Scenes/PauseMenu.tscn" id="5_ug304"]
 [ext_resource type="PackedScene" uid="uid://bbl2nfpmpwqw4" path="res://Terrain/Wall4.tscn" id="7_i0hpi"]
 [ext_resource type="PackedScene" uid="uid://bab00ck38bexn" path="res://BackgroundScenery/bgPillars.tscn" id="8_pf1ax"]
 [ext_resource type="Script" path="res://Scenes/DeathPlane.gd" id="8_u7uht"]
@@ -92,18 +93,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3283, 0.976458, -3)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HitRect" type="ColorRect" parent="UI"]
 visible = false
-layout_mode = 0
-offset_left = -342.0
-offset_top = -424.0
-offset_right = 1358.0
-offset_bottom = 718.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10000.0
+offset_top = -10000.0
+offset_right = -10000.0
+offset_bottom = -10000.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(200000, 200000)
 color = Color(1, 0, 0, 0.494118)
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("5_ug304")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Buildings" type="Node3D" parent="."]
 

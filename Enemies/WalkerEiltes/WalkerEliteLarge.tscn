@@ -5,12 +5,12 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
 material = ExtResource("3_l40s8")
+size = Vector3(3, 3, 3)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_es1cc"]
-points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_57b8w"]
+points = PackedVector3Array(-1.5, -1.49971, -1.49971, 1.5, 1.49978, 1.49978, 1.5, -1.49978, 1.49978, 1.5, 1.49978, -1.49978, -1.5, 1.49971, 1.49971, 1.5, -1.49978, -1.49978, -1.5, -1.49971, 1.49971, -1.5, 1.49971, -1.49971)
 
 [node name="Large" type="CharacterBody3D" groups=["enemies"]]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_w0p34")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -18,12 +18,13 @@ material_override = ExtResource("3_l40s8")
 mesh = SubResource("BoxMesh_b3u8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_es1cc")
+shape = SubResource("ConvexPolygonShape3D_57b8w")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 3.2
 target_desired_distance = 3.2
 avoidance_enabled = true
+radius = 2.0
 
 [node name="jumpTimer" type="Timer" parent="."]
 wait_time = 0.75

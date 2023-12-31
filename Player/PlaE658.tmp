@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckmnya8f8xdtb"]
+[gd_scene load_steps=6 format=3 uid="uid://ckmnya8f8xdtb"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_bjiod"]
+[ext_resource type="PackedScene" uid="uid://bsfqqe7k8p3ld" path="res://Scenes/PauseMenu.tscn" id="2_p5ql7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5e1dg"]
 
@@ -50,5 +51,7 @@ target_position = Vector3(0, 0, -100)
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="PauseMenu" parent="Reload" instance=ExtResource("2_p5ql7")]
 
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]

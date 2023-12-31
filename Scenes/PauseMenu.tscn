@@ -11,6 +11,7 @@ shader_parameter/brightness = 1.0
 [sub_resource type="Animation" id="Animation_7ipta"]
 resource_name = "Unpause"
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,6 +87,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_51htu")]
+}
 
 [sub_resource type="Animation" id="Animation_l2fb5"]
 resource_name = "Pause"
@@ -126,6 +139,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_51htu")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lige0"]
 _data = {
@@ -135,7 +160,7 @@ _data = {
 }
 
 [node name="PauseMenu" type="ColorRect"]
-process_mode = 3
+process_mode = 2
 material = SubResource("ShaderMaterial_51htu")
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,7 +214,7 @@ text = "Main Menu"
 libraries = {
 "": SubResource("AnimationLibrary_lige0")
 }
-autoplay = "Unpause"
+autoplay = "Pause"
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
