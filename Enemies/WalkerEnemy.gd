@@ -75,6 +75,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 		move_and_slide()
 
 func tryJump():
+	await get_tree().create_timer(randf_range(0,1)).timeout
 	velocity = 20 * global_position.direction_to(player.global_position)
 	velocity.y = JUMP_VELOCITY
 	canJump = false
