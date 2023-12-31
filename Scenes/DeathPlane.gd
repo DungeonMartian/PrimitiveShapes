@@ -6,5 +6,6 @@ extends Area3D
 
 
 func _on_body_entered(body):
+	print("killed one")
 	body.queue_free()
 	pass # Replace with function body.

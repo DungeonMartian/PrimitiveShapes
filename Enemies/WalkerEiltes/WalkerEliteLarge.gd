@@ -11,11 +11,11 @@ var newPosz
 var canJump
 var dying = false
 
-var JUMP_VELOCITY = 15.0 
+var JUMP_VELOCITY = 8.0 
 var gravity =12
-var damage = 2
-var health = 3
-var speed = 5.0
+var damage = 3
+var health = 30
+var speed = 2.0
 
 
 #@export var playerPos:NodePath

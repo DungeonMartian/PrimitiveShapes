@@ -11,6 +11,7 @@ var direction
 var headDir
 var canDash =1 
 var spread = 10
+var reloaded = true
 
 @onready var ray_container = $Head/RayContainer
 @onready var head = $Head
@@ -28,6 +29,8 @@ func _ready():
 	randomize()
 
 func shootGun():
+	reloaded = false
+	$Reload.start()
 	for r in ray_container.get_children(): 
 		var b = bullet.instantiate()
 		r.add_child(b)
@@ -54,8 +57,12 @@ func Hit(dir):
 	pass
 		
 func _physics_process(delta):
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("pause"):
+		$PauseMenu.pause()
+		
+	if Input.is_action_just_pressed("shoot") && reloaded == true:
 		shootGun()
+		
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -90,3 +97,8 @@ func Dash(delta):
 		velocity.x = lerp(velocity.x, direction.x * DASH, delta *7)
 		velocity.z = lerp(velocity.z, direction.z * DASH, delta *7)
 		velocity.y = lerp(velocity.y, (headDir.y * UPDASH) + 10, delta *7)
+
+
+func _on_reload_timeout():
+	reloaded = true
+	pass # Replace with function body.

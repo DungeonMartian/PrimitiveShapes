@@ -1,27 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwp8066j1v6jq"]
+[gd_scene load_steps=5 format=3 uid="uid://cdm82qfvomn35"]
 
-[ext_resource type="Script" path="res://Enemies/WalkerEnemy.gd" id="1_dseqi"]
-[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="3_liqn6"]
+[ext_resource type="Script" path="res://Enemies/WalkerEiltes/WalkerEliteLarge.gd" id="1_w0p34"]
+[ext_resource type="Material" uid="uid://c7rclt5gsn3gh" path="res://Enemies/Materials/giantEnemy.tres" id="3_l40s8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
-material = ExtResource("3_liqn6")
+material = ExtResource("3_l40s8")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_es1cc"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
-[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
-script = ExtResource("1_dseqi")
+[node name="Large" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("1_w0p34")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = ExtResource("3_liqn6")
+material_override = ExtResource("3_l40s8")
 mesh = SubResource("BoxMesh_b3u8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_es1cc")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 1.35
-target_desired_distance = 1.35
+path_desired_distance = 3.2
+target_desired_distance = 3.2
 avoidance_enabled = true
 
 [node name="jumpTimer" type="Timer" parent="."]

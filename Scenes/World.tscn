@@ -132,7 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 233, 0, 78)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -228)
 
 [node name="bgSphere" parent="Buildings" instance=ExtResource("10_bhapc")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -128, 70, 268)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -128, 30, 218)
 
 [node name="Sky" type="Node3D" parent="Buildings"]
 
@@ -219,8 +219,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.191, 37.0647, -49.7294)
 [node name="Spawn10" type="Node3D" parent="SpawnController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.7518, 37.4125, 34.9917)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="spawnEnemies" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [node name="DeathPlane" type="Area3D" parent="."]
@@ -231,10 +231,10 @@ script = ExtResource("8_u7uht")
 shape = SubResource("BoxShape3D_p25h3")
 
 [node name="updatePlayerPos" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 autostart = true
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="spawnEnemies" to="." method="_on_spawn_enemies_timeout"]
 [connection signal="body_entered" from="DeathPlane" to="DeathPlane" method="_on_body_entered"]
 [connection signal="timeout" from="updatePlayerPos" to="." method="_on_update_player_pos_timeout"]

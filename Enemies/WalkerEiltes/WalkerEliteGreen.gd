@@ -13,9 +13,9 @@ var dying = false
 
 var JUMP_VELOCITY = 15.0 
 var gravity =12
-var damage = 2
-var health = 3
-var speed = 5.0
+var damage = 1
+var health = 2
+var speed = 8.0
 
 
 #@export var playerPos:NodePath
