@@ -18,20 +18,36 @@ var spawnThisRound = 0
 var eliteNum = 0
 var fixedWaveQuant = 0
 
+var max_enemies : int = 30
+# key is enemy prefab, item is boolean indicating whether it has executed yet
+var enemies : Dictionary = {}
 
 const JUMP_VELOCITY = 7.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if Input.is_action_just_pressed("pause"):
 		$UI/PauseMenu.pause()
-
-	pass
+	var all_finished = true;
+	for enemy in enemies.keys():
+		if enemy == null:
+			enemies.erase(enemy)
+			continue
+		
+		if (enemies[enemy]):
+			continue
+		else:
+			if enemy.has_method("update_target_location"):
+				enemy.update_target_location($Player.global_transform.origin)
+			enemies[enemy] = true
+			all_finished = false
+			break
+	if all_finished:
+		for enemy in enemies.keys():
+			enemies[enemy] = false
 
 
 func _on_player_player_hit():
@@ -63,12 +79,16 @@ func startWave():
 	fixedWaveQuant = waveQuant - eliteNum
 			
 	for n in (fixedWaveQuant):
+		if enemies.size() > max_enemies: break
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = enemy.instantiate()
 		instance.position = spawn_point
+		
 		navRegion.add_child(instance)
+		enemies[instance] = false
 		
 	for n in (eliteNum):
+		if enemies.size() > max_enemies: break
 		var spawn_point = _get_random_child(spawns).global_position
 		
 		print("spawned elite")
@@ -84,15 +104,14 @@ func startWave():
 			instance = enemyE3.instantiate()
 		instance.position = spawn_point
 		navRegion.add_child(instance)
-
-	
-	
+		enemies[instance] = false
 
 
 
 
 func _on_update_player_pos_timeout():
-	get_tree().call_group("enemies", "update_target_location", $Player.global_transform.origin)
+	pass
+	#get_tree().call_group("enemies", "update_target_location", $Player.global_transform.origin)
 
 
 
