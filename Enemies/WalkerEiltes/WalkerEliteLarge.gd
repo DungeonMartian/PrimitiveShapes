@@ -34,19 +34,7 @@ func _physics_process(delta):
 		rotation.z = lerp(rotation.z, randf_range(60,180),  delta/25)
 		die()
 	if !dying:
-		var current_location = global_transform.origin
-		var next_location = nav.get_next_path_position()
-		var new_velocity = (next_location - current_location).normalized() * speed
-		new_velocity = Vector3i(new_velocity.x ,-gravity, new_velocity.z)
-		nav.set_velocity(new_velocity)
-		
-			
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
-		if is_on_floor():
-			if player.global_position.y-2 > global_position.y && canJump:
-				tryJump()
-			canJump = true
-			$jumpTimer.paused = false
+		pass
 	if dying && !is_on_floor():
 		velocity. y -= gravity
 	
@@ -54,6 +42,20 @@ func _physics_process(delta):
 
 func update_target_location(target_location):
 	nav.target_position = target_location
+	
+	var current_location = global_transform.origin
+	var next_location = nav.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * speed
+	new_velocity = Vector3i(new_velocity.x ,-gravity, new_velocity.z)
+	nav.set_velocity(new_velocity)
+	
+		
+	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
+	if is_on_floor():
+		if player.global_position.y-2 > global_position.y && canJump:
+			tryJump()
+		canJump = true
+		$jumpTimer.paused = false
 
 func die():
 	dying = true
