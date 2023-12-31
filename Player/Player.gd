@@ -13,6 +13,10 @@ var canDash =1
 var spread = 10
 var reloaded = true
 
+const MAXHP = 100
+var playerHealth = MAXHP
+
+
 @onready var ray_container = $Head/RayContainer
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -27,7 +31,12 @@ signal player_hit
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = fov
-	randomize()
+	randomize()	
+	$Control/Health.max_value = MAXHP
+	set_health_bar()
+
+func set_health_bar():
+	$Control/Health.value = playerHealth
 
 func shootGun():
 	reloaded = false
@@ -52,8 +61,10 @@ func _input(event):
 		ray_container.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
 	
 	
-func Hit(dir):
+func Hit(dir, damage):
 	emit_signal("player_hit")
+	playerHealth -= damage
+	set_health_bar()
 	velocity += dir * HITSTAGGER
 	pass
 		

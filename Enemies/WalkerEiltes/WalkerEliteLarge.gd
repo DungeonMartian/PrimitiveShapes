@@ -64,7 +64,7 @@ func die():
 
 func _on_navigation_agent_3d_target_reached():
 	dir = global_position.direction_to(player.global_position)
-	player.Hit(dir)
+	player.Hit(dir, damage)
 	
 
 
