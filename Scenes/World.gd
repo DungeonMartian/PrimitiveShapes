@@ -47,7 +47,8 @@ func _get_random_child(parent_node):
 
 	
 func startWave():
-	
+	player.playerHealth +=20
+	player.set_health_bar()
 	#difficulty = wave number
 	print("wave quant "+ str(waveQuant))
 

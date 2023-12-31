@@ -19,7 +19,7 @@ var playerHealth = MAXHP
 
 @onready var ray_container = $Head/RayContainer
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
+@onready var camera : Camera3D = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
 
 

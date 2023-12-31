@@ -243,7 +243,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.191, 37.0647, -49.7294)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.7518, 37.4125, 34.9917)
 
 [node name="spawnEnemies" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [node name="DeathPlane" type="Area3D" parent="."]
