@@ -50,6 +50,7 @@ func set_health_bar():
 
 func shootGun():
 	reloaded = false
+	$Audios/Shotgun.play()
 	$Reload.start()
 	for r in ray_container.get_children(): 
 		var b = bullet.instantiate()
@@ -96,6 +97,7 @@ func _physics_process(delta):
 	direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	headDir = (camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
+		$Audios/Dash.stop()
 		canDash = 1
 		if direction:
 			velocity.x = direction.x * SPEED
@@ -115,6 +117,7 @@ func _physics_process(delta):
 
 func Dash(delta):
 	if canDash > 0:
+		$Audios/Dash.play()
 		canDash -=1
 		velocity.x = lerp(velocity.x, direction.x * DASH, delta *7)
 		velocity.z = lerp(velocity.z, direction.z * DASH, delta *7)

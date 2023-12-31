@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 var shoot = false
-var damage = 1
+var damage = 2
 @onready var spawnEffect = preload ("res://Effects/RubbleParticle.tscn")
 
 # Called when the node enters the scene tree for the first time.

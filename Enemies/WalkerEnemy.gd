@@ -11,7 +11,7 @@ var newPosz
 var canJump
 var dying = false
 
-var JUMP_VELOCITY = 15.0 
+var JUMP_VELOCITY = 8.0 
 var gravity =12
 var damage = 2
 var health = 3
@@ -38,7 +38,7 @@ func _physics_process(delta):
 		pass
 	if dying && !is_on_floor():
 		velocity. y -= gravity
-	
+	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
 
 
 func update_target_location(target_location):
@@ -50,9 +50,9 @@ func update_target_location(target_location):
 	new_velocity = Vector3i(new_velocity.x ,-gravity, new_velocity.z)
 	nav.set_velocity(new_velocity)
 	
-	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
+
 	if is_on_floor():
-		if player.global_position.y - 2 > global_position.y && canJump:
+		if player.global_position.y - 3 > global_position.y && canJump :
 			tryJump()
 		canJump = true
 		$jumpTimer.paused = false

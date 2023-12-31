@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckmnya8f8xdtb"]
+[gd_scene load_steps=8 format=3 uid="uid://ckmnya8f8xdtb"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_bjiod"]
+[ext_resource type="AudioStream" uid="uid://4nnn828w5txf" path="res://Sounds/Effects/Player/shot-and-reload-6158.mp3" id="2_peewm"]
+[ext_resource type="AudioStream" uid="uid://cpgc5qjic3o2m" path="res://Sounds/Effects/Player/whoosh-blow-flutter-shortwav-14678.mp3" id="3_ddlfe"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5e1dg"]
 
@@ -58,7 +60,7 @@ target_position = Vector3(0, 0, -100)
 target_position = Vector3(0, 0, -100)
 
 [node name="Reload" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.8
 one_shot = true
 autostart = true
 
@@ -134,6 +136,15 @@ text = "Retry"
 layout_mode = 2
 theme_override_font_sizes/font_size = 400
 text = "Menu"
+
+[node name="Audios" type="Node3D" parent="."]
+
+[node name="Shotgun" type="AudioStreamPlayer" parent="Audios"]
+stream = ExtResource("2_peewm")
+volume_db = -0.5
+
+[node name="Dash" type="AudioStreamPlayer" parent="Audios"]
+stream = ExtResource("3_ddlfe")
 
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="pressed" from="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

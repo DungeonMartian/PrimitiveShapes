@@ -30,6 +30,10 @@ avoidance_enabled = true
 wait_time = 0.75
 autostart = true
 
+[node name="randJump" type="Timer" parent="."]
+autostart = true
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="jumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="randJump" to="." method="_on_rand_jump_timeout"]

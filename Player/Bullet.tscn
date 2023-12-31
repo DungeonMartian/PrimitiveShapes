@@ -20,6 +20,8 @@ points = PackedVector3Array(-0.00380654, -0.0203175, -0.00126885, 0.00381052, 0.
 
 [node name="Bullet" type="RigidBody3D"]
 collision_layer = 0
+collision_mask = 0
+mass = 0.06
 gravity_scale = 0.0
 script = ExtResource("1_b7gvu")
 
@@ -30,6 +32,7 @@ mesh = SubResource("SphereMesh_aux6g")
 shape = SubResource("ConvexPolygonShape3D_7oaoo")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 collision_layer = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]

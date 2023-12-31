@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7ca4fhbx6b3g"]
+[gd_scene load_steps=15 format=3 uid="uid://7ca4fhbx6b3g"]
 
 [ext_resource type="PackedScene" uid="uid://ckmnya8f8xdtb" path="res://Player/Player.tscn" id="1_0kwpd"]
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_vnnxa"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/DeathPlane.gd" id="8_u7uht"]
 [ext_resource type="MeshLibrary" uid="uid://cagiqnjn3oj7n" path="res://Terrain/gltf/MeshLibrary.tres" id="8_x3rjs"]
 [ext_resource type="PackedScene" uid="uid://bxm0cm5xrbrpu" path="res://BackgroundScenery/bgPillars2.tscn" id="9_m7qvl"]
+[ext_resource type="AudioStream" uid="uid://c8py6t0ooax8h" path="res://Sounds/Music/InTheConcreteJungle-TopSecretMusicNetwork.mp3" id="10_1ay0g"]
 [ext_resource type="PackedScene" uid="uid://c0fp2iq27w3x5" path="res://BackgroundScenery/bgSphere.tscn" id="10_bhapc"]
 
 [sub_resource type="Sky" id="Sky_km33y"]
@@ -257,6 +258,11 @@ shape = SubResource("BoxShape3D_p25h3")
 [node name="updatePlayerPos" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_1ay0g")
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

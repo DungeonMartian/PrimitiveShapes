@@ -117,6 +117,8 @@ func _on_update_player_pos_timeout():
 
 func _on_spawn_enemies_timeout():
 		startWave()
+		if $Audio/Music.playing == false:
+			$Audio/Music.play()
 		difficulty +=1
 
 
