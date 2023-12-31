@@ -27,6 +27,7 @@ var gravity = 9.8
 var fov =85
 
 signal player_hit
+signal player_died
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -36,6 +37,10 @@ func _ready():
 	set_health_bar()
 
 func set_health_bar():
+	if playerHealth > MAXHP:
+		playerHealth = MAXHP
+	if playerHealth < 0:
+		emit_signal("player_died")
 	$Control/Health.value = playerHealth
 
 func shootGun():

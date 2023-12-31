@@ -28,5 +28,7 @@ func _on_resume_button_pressed():
 
 
 func _on_menu_button_pressed():
-	get_tree().quit()
+	visible= false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 	pass # Replace with function body.

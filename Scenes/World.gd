@@ -62,13 +62,13 @@ func startWave():
 			
 	fixedWaveQuant = waveQuant - eliteNum
 			
-	for n in range(0,fixedWaveQuant):
+	for n in (fixedWaveQuant):
 		var spawn_point = _get_random_child(spawns).global_position
 		instance = enemy.instantiate()
 		instance.position = spawn_point
 		navRegion.add_child(instance)
 		
-	for n in range(0,eliteNum):
+	for n in (eliteNum):
 		var spawn_point = _get_random_child(spawns).global_position
 		
 		print("spawned elite")
@@ -100,3 +100,8 @@ func _on_spawn_enemies_timeout():
 		startWave()
 		difficulty +=1
 
+
+
+func _on_player_player_died():
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
