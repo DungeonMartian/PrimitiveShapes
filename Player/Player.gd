@@ -43,6 +43,8 @@ func set_health_bar():
 	if playerHealth < 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused=true
+		$Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Label.text = "You Died! 
+		" + str(score)
 		$Control/ColorRect.visible = true
 	$Control/Health.value = playerHealth
 
