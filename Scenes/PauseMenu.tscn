@@ -160,7 +160,7 @@ _data = {
 }
 
 [node name="PauseMenu" type="ColorRect"]
-process_mode = 2
+process_mode = 3
 material = SubResource("ShaderMaterial_51htu")
 anchors_preset = 15
 anchor_right = 1.0

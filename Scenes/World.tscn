@@ -118,9 +118,10 @@ offset_bottom = -10000.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(200000, 200000)
-color = Color(1, 0, 0, 0.494118)
+color = Color(1, 0, 0, 0.196078)
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("5_ug304")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

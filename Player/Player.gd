@@ -15,6 +15,7 @@ var reloaded = true
 
 const MAXHP = 100
 var playerHealth = MAXHP
+var score = 0
 
 
 @onready var ray_container = $Head/RayContainer
@@ -40,7 +41,9 @@ func set_health_bar():
 	if playerHealth > MAXHP:
 		playerHealth = MAXHP
 	if playerHealth < 0:
-		emit_signal("player_died")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused=true
+		$Control/ColorRect.visible = true
 	$Control/Health.value = playerHealth
 
 func shootGun():
@@ -55,7 +58,8 @@ func shootGun():
 		b.shoot = true
 
 
-
+func playerDied():
+	emit_signal("player_died")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -117,4 +121,21 @@ func Dash(delta):
 
 func _on_reload_timeout():
 	reloaded = true
+	pass # Replace with function body.
+
+
+
+
+
+
+func _on_menu_button_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	pass # Replace with function body.
+
+
+func _on_retry_button_pressed():
+	get_tree().paused=false
+	$Control/ColorRect.visible = false
+	emit_signal("player_died")
 	pass # Replace with function body.

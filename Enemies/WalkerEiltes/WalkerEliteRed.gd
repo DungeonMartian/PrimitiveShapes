@@ -57,6 +57,7 @@ func update_target_location(target_location):
 
 func die():
 	dying = true
+	player.score += 200
 	await get_tree().create_timer(0.4).timeout
 	queue_free()
 

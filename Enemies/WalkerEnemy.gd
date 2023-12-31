@@ -18,6 +18,7 @@ var health = 3
 var speed = 5.0
 
 
+
 #@export var playerPos:NodePath
 @export var playerPos:= "../../Player"
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
@@ -57,6 +58,7 @@ func update_target_location(target_location):
 
 func die():
 	dying = true
+	player.score += 100
 	await get_tree().create_timer(0.4).timeout
 	queue_free()
 
@@ -82,7 +84,7 @@ func tryJump():
 	await get_tree().create_timer(0.2).timeout
 	
 	
-	pass
+
 
 
 func _on_jump_timer_timeout():

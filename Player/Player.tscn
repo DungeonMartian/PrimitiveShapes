@@ -81,4 +81,60 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 537.0
+offset_top = 288.0
+offset_right = 537.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = -147.0
+offset_top = -110.0
+offset_right = 2669.0
+offset_bottom = 1864.0
+scale = Vector2(0.137125, 0.155049)
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/ColorRect/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ColorRect/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 600
+text = "You Died!"
+
+[node name="HSeparator" type="HSeparator" parent="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 400
+text = "Retry"
+
+[node name="MenuButton" type="Button" parent="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 400
+text = "Menu"
+
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="pressed" from="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
