@@ -168,7 +168,7 @@ transform = Transform3D(0.0836257, 0, 0.996497, 0, 1, 0, -0.996497, 0, 0.0836257
 curve = SubResource("Curve3D_t0fmk")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.941875, 0.163055, -0.293627, -0.187609, 0.980541, -0.0572972, 0.278581, 0.109059, 0.95416, 38.0011, 12.9188, 22.0355)
+transform = Transform3D(0.941875, 0.163055, -0.293627, -0.187609, 0.980541, -0.0572971, 0.278581, 0.109059, 0.95416, 38.0011, 12.9188, 22.0355)
 progress = 90.9692
 tilt_enabled = false
 script = ExtResource("6_0snkk")
@@ -232,7 +232,7 @@ text = "Quit"
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_u01lh")
-volume_db = 10.0
+volume_db = 12.0
 autoplay = true
 
 [connection signal="pressed" from="Path3D/PathFollow3D/Camera3D/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

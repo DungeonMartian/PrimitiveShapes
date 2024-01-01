@@ -11,10 +11,10 @@ rim_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pfws"]
 material = SubResource("StandardMaterial3D_img42")
-size = Vector3(1, 3, 1)
+size = Vector3(1, 6, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_502ma"]
-points = PackedVector3Array(0.5, 1.45426, 0.5, -0.5, -1.45426, -0.5, -0.5, -1.45426, 0.5, -0.5, 1.45426, -0.5, 0.5, -1.45426, -0.5, 0.5, -1.45426, 0.5, -0.5, 1.45426, 0.5, 0.5, 1.45426, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_htdl7"]
+size = Vector3(1, 6, 1)
 
 [node name="PillarMesh" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_5pfws")
@@ -22,4 +22,4 @@ mesh = SubResource("BoxMesh_5pfws")
 [node name="Pillar" type="StaticBody3D" parent="."]
 
 [node name="PillarCol" type="CollisionShape3D" parent="Pillar"]
-shape = SubResource("ConvexPolygonShape3D_502ma")
+shape = SubResource("BoxShape3D_htdl7")
