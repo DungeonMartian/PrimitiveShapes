@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwp8066j1v6jq"]
+[gd_scene load_steps=7 format=3 uid="uid://dwp8066j1v6jq"]
 
 [ext_resource type="Script" path="res://Enemies/WalkerEnemy.gd" id="1_dseqi"]
 [ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="3_liqn6"]
+[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="3_ytp50"]
+[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="5_e55cm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
 material = ExtResource("3_liqn6")
@@ -29,6 +31,17 @@ neighbor_distance = 10.0
 [node name="jumpTimer" type="Timer" parent="."]
 wait_time = 0.75
 autostart = true
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="EnemySpawn" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("3_ytp50")
+max_distance = 800.0
+
+[node name="HitPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_e55cm")
+pitch_scale = 0.5
+max_polyphony = 2
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

@@ -27,15 +27,20 @@ var speed = 5.0
 
 func _ready():
 	player = get_node(playerPos)
+	$Audio/EnemySpawn.play()
 
 
 func _physics_process(delta):
 	# Add the gravity.
 	if health <=0 && !dying:
 		rotation.z = lerp(rotation.z, randf_range(60,180),  delta/25)
+		#sound goes off here
 		die()
 	if !dying:
-		pass
+		if is_on_floor():
+			pass # sounds goes on here
+		if !is_on_floor():
+			pass #sound goes off here
 	if dying && !is_on_floor():
 		velocity. y -= gravity
 	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ))
@@ -68,6 +73,7 @@ func die():
 func _on_navigation_agent_3d_target_reached():
 	dir = global_position.direction_to(player.global_position)
 	player.Hit(dir, damage)
+	$Audio/HitPlayer.play()
 	
 
 

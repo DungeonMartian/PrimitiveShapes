@@ -26,7 +26,7 @@ var speed = 6.0
 
 func _ready():
 	player = get_node(playerPos)
-
+	$Audio/EnemySpawn.play()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -54,6 +54,9 @@ func update_target_location(target_location):
 	if is_on_floor():
 		if player.global_position.y - 2 > global_position.y && canJump && player.is_on_floor():
 			tryJump()
+			
+		if player.global_position.y - 2 > global_position.y && canJump:
+			tryJump()
 		canJump = true
 		$jumpTimer.paused = false
 
@@ -68,7 +71,7 @@ func die():
 func _on_navigation_agent_3d_target_reached():
 	dir = global_position.direction_to(player.global_position)
 	player.Hit(dir, damage)
-	
+	$Audio/HitPlayer.play()
 
 
 

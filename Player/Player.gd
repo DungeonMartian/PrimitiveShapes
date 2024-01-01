@@ -13,12 +13,12 @@ var canDash =1
 var spread = 10
 var reloaded = true
 
-const MAXHP = 100
+const MAXHP = 50
 var playerHealth = MAXHP
 var score = 0
 
 
-@onready var ray_container = $Head/RayContainer
+@onready var shotgun = $Head/ShotGun
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
@@ -52,7 +52,7 @@ func shootGun():
 	reloaded = false
 	$Audios/Shotgun.play()
 	$Reload.start()
-	for r in ray_container.get_children(): 
+	for r in shotgun.get_children(): 
 		var b = bullet.instantiate()
 		r.add_child(b)
 		r.target_position.x = randf_range(spread, -spread)
@@ -69,8 +69,8 @@ func _input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
-		ray_container.rotate_x(-event.relative.y * SENSITIVITY)
-		ray_container.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
+		shotgun.rotate_x(-event.relative.y * SENSITIVITY)
+		shotgun.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(75))
 	
 	
 func Hit(dir, damage):

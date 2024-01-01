@@ -26,7 +26,7 @@ var speed = 2.0
 
 func _ready():
 	player = get_node(playerPos)
-
+	$Audio/EnemySpawn.play()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -68,7 +68,7 @@ func die():
 func _on_navigation_agent_3d_target_reached():
 	dir = global_position.direction_to(player.global_position)
 	player.Hit(dir, damage)
-	
+	$Audio/HitPlayer.play()
 
 
 
