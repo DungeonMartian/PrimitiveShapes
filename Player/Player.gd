@@ -68,9 +68,9 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 		shotgun.rotate_x(-event.relative.y * SENSITIVITY)
-		shotgun.rotation.x = clamp(camera.rotation.x, deg_to_rad(-65), deg_to_rad(60))
+		shotgun.rotation.x = clamp(camera.rotation.x, deg_to_rad(-61), deg_to_rad(59))
 	
 	
 func Hit(dir, damage):

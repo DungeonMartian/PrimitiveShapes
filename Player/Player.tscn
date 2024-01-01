@@ -17,7 +17,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="BoxMesh" id="BoxMesh_u0tw8"]
 material = ExtResource("2_ulgvb")
-size = Vector3(0.1, 0.1, 0.3)
+size = Vector3(0.1, 0.1, 0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2547"]
 bg_color = Color(0.827451, 0, 0, 1)
@@ -50,28 +50,28 @@ modulate = Color(0.231373, 0.231373, 0.231373, 0.631373)
 texture = SubResource("PlaceholderTexture2D_yahmm")
 
 [node name="ShotGun" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(0.73482, -0.678262, 0, 0.678262, 0.73482, 0, 0, 0, 1, 0.353846, 0.558431, -0.214239)
+transform = Transform3D(0.73482, -0.678262, 0, 0.678262, 0.73482, 0, 0, 0, 1, 0.353846, 0.558431, -0.070914)
 mesh = SubResource("BoxMesh_u0tw8")
 skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D2" type="RayCast3D" parent="Head/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D3" type="RayCast3D" parent="Head/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D4" type="RayCast3D" parent="Head/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D5" type="RayCast3D" parent="Head/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="Reload" type="Timer" parent="."]

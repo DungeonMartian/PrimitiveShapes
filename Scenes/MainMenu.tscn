@@ -205,7 +205,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Path3D/PathFollow3D/Camera3D/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Blideo Bame"
+text = "Cubic Blitz"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Path3D/PathFollow3D/Camera3D/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -217,6 +217,7 @@ theme_override_font_sizes/font_size = 40
 text = "Play"
 
 [node name="OptionButton" type="Button" parent="Path3D/PathFollow3D/Camera3D/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Options
