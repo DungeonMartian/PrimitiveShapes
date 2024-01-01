@@ -52,7 +52,7 @@ func update_target_location(target_location):
 		
 
 	if is_on_floor():
-		if player.global_position.y - 2 > global_position.y && canJump && player.is_on_floor():
+		if player.global_position.y - 2 > global_position.y && canJump:
 			tryJump()
 			
 		if player.global_position.y - 2 > global_position.y && canJump:

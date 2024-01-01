@@ -232,6 +232,7 @@ text = "Quit"
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_u01lh")
+volume_db = 10.0
 autoplay = true
 
 [connection signal="pressed" from="Path3D/PathFollow3D/Camera3D/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

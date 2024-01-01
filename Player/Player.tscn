@@ -55,23 +55,23 @@ mesh = SubResource("BoxMesh_u0tw8")
 skeleton = NodePath("../../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
+transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
+transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D3" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
+transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D4" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
+transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="RayCast3D5" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
+transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
 [node name="Reload" type="Timer" parent="."]
