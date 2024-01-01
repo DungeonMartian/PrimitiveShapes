@@ -18,7 +18,7 @@ var playerHealth = MAXHP
 var score = 0
 
 
-@onready var shotgun = $Head/ShotGun
+@onready var shotgun = $Head/Camera3D/ShotGun
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
@@ -69,8 +69,8 @@ func _input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
-		shotgun.rotate_x(-event.relative.y * SENSITIVITY)
-		shotgun.rotation.x = clamp(camera.rotation.x, deg_to_rad(-61), deg_to_rad(59))
+		#shotgun.rotate_x(-event.relative.y * SENSITIVITY)
+		#shotgun.rotation.x = clamp(shotgun.rotation.x, deg_to_rad(-58), deg_to_rad(58))
 	
 	
 func Hit(dir, damage):

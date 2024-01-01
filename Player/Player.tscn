@@ -49,28 +49,28 @@ transform = Transform3D(0.170284, 0, 0, 0, 0.170284, 0, 0, 0, 1.0015, 0, 0, -0.0
 modulate = Color(0.231373, 0.231373, 0.231373, 0.631373)
 texture = SubResource("PlaceholderTexture2D_yahmm")
 
-[node name="ShotGun" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(0.73482, -0.678262, 0, 0.678262, 0.73482, 0, 0, 0, 1, 0.353846, 0.558431, -0.070914)
+[node name="ShotGun" type="MeshInstance3D" parent="Head/Camera3D"]
+transform = Transform3D(0.73482, -0.678262, 0, 0.678262, 0.73482, 0, 0, 0, 1, 0.353846, -0.193828, -0.070914)
 mesh = SubResource("BoxMesh_u0tw8")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/ShotGun"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D2" type="RayCast3D" parent="Head/ShotGun"]
+[node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D3" type="RayCast3D" parent="Head/ShotGun"]
+[node name="RayCast3D3" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D4" type="RayCast3D" parent="Head/ShotGun"]
+[node name="RayCast3D4" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D5" type="RayCast3D" parent="Head/ShotGun"]
+[node name="RayCast3D5" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
@@ -156,7 +156,7 @@ text = "Menu"
 
 [node name="Shotgun" type="AudioStreamPlayer" parent="Audios"]
 stream = ExtResource("2_peewm")
-volume_db = -0.5
+volume_db = -2.5
 
 [node name="Dash" type="AudioStreamPlayer" parent="Audios"]
 stream = ExtResource("3_ddlfe")
