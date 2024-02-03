@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq05l0d31qrig"]
+
+[ext_resource type="Material" uid="uid://y7iw8ef11jq8" path="res://Terrain/Wall.tres" id="2_1we63"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i84ow"]
+material = ExtResource("2_1we63")
+size = Vector3(2.01, 50.01, 2.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8duoy"]
+size = Vector3(2, 50, 2)
+
+[node name="BgBuildings" type="MeshInstance3D"]
+material_override = ExtResource("2_1we63")
+mesh = SubResource("BoxMesh_i84ow")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_8duoy")

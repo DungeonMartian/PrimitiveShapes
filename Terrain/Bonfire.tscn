@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://6r6mtmnc3mpb"]
+
+[ext_resource type="Script" path="res://Terrain/Bonfire.gd" id="1_sria4"]
+[ext_resource type="Material" uid="uid://br4ggf1c0yjh4" path="res://LinearEnemies/Materials/Cover.tres" id="2_8tgrk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i6nft"]
+material = ExtResource("2_8tgrk")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aqhkv"]
+radius = 1.2
+
+[node name="Bonfire" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34722, 0)
+script = ExtResource("1_sria4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.45037, 0)
+mesh = SubResource("CylinderMesh_i6nft")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11339, 0)
+shape = SubResource("CylinderShape3D_aqhkv")
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

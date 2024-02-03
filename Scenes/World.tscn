@@ -11,11 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://c8py6t0ooax8h" path="res://Sounds/Music/InTheConcreteJungle-TopSecretMusicNetwork.mp3" id="10_1ay0g"]
 [ext_resource type="PackedScene" uid="uid://c0fp2iq27w3x5" path="res://BackgroundScenery/bgSphere.tscn" id="10_bhapc"]
 
-[sub_resource type="Sky" id="Sky_km33y"]
+[sub_resource type="Sky" id="Sky_74m6g"]
 
 [sub_resource type="Environment" id="Environment_7j0ry"]
 background_mode = 2
-sky = SubResource("Sky_km33y")
+sky = SubResource("Sky_74m6g")
 ambient_light_source = 3
 ambient_light_color = Color(0, 0, 1, 1)
 reflected_light_source = 2
@@ -90,7 +90,7 @@ transform = Transform3D(1.03316e-07, 0, 1, 0, 1, 0, -1, 0, 1.03316e-07, -49.8809
 transform = Transform3D(1.03316e-07, 0, 1, 0, 1, 0, -1, 0, 1.03316e-07, -49.8809, 0, 10.4038)
 
 [node name="Player" parent="." instance=ExtResource("1_0kwpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3283, 0.976458, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0497, 3.33946, 0)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -157,7 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 233, 0, 78)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -228)
 
 [node name="bgSphere" parent="Buildings" instance=ExtResource("10_bhapc")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -128, -134.022, 218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7273, 354.315, 258.226)
 
 [node name="Sky" type="Node3D" parent="Buildings"]
 

@@ -41,7 +41,7 @@ func _physics_process(delta):
 			continue
 		else:
 			if enemy.has_method("update_target_location"):
-				enemy.update_target_location($Player.global_transform.origin)
+				playerLocation(enemy)
 			enemies[enemy] = true
 			all_finished = false
 			break
@@ -49,6 +49,8 @@ func _physics_process(delta):
 		for enemy in enemies.keys():
 			enemies[enemy] = false
 
+func playerLocation(enemytoFind):
+	enemytoFind.update_target_location(player.global_transform.origin)
 
 func _on_player_player_hit():
 	hit_rect.visible = true

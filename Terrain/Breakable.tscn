@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cnhylfqj6lqv1"]
+
+[node name="Breakable" type="Node3D"]

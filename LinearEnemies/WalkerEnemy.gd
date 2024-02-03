@@ -8,26 +8,26 @@ var newPosx
 var curPosz
 var newPosz
 
-var canJump
-var dying = false
+var canJump:bool
+var dying :bool= false
 
-var JUMP_VELOCITY :float= 10.0 
+var JUMP_VELOCITY :float= 6.0 
 var gravity :int =12
-var damage :int= 1
-var health :int= 2
-var speed :float = 8.0
+var damage :int= 2
+var health :int= 3
+var speed :float = 3.5
 
+var ATTACK : bool = false
 
-var ATTACK
 var Search : bool = false
 
 var direction : Vector3 = Vector3(100000,0,100000)
 signal combat
 
-#@export var playerPos:NodePath
-@onready var player
-@onready var nav: NavigationAgent3D = $NavigationAgent3D
 
+#@export var playerPos:NodePath
+@onready var player #= "../../../Player"
+@onready var nav: NavigationAgent3D = $NavigationAgent3D
 
 
 
@@ -145,10 +145,3 @@ func _on_jump_timer_timeout():
 			tryJump()
 			$jumpTimer.paused = true
 	
-
-
-func _on_rand_jump_timeout():
-	$randJump.start(randf_range(.5,1.5))
-	if is_on_floor() && canJump:
-			tryJump()
-	pass # Replace with function body.

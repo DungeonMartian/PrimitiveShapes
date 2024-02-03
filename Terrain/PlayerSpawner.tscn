@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmtlihybckf8l"]
+
+[ext_resource type="Script" path="res://Terrain/PlayerSpawner.gd" id="1_4o6xp"]
+
+[node name="PlayerSpawner" type="Node3D" groups=["Bonfire"]]
+process_mode = 3
+script = ExtResource("1_4o6xp")

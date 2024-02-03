@@ -6,8 +6,8 @@
 material = ExtResource("1_v3n5d")
 size = Vector3(80, 40, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e3d6b"]
-points = PackedVector3Array(40, 20, 0.5, 40, 20, -0.5, -40, 20, 0.5, 40, -20, 0.5, 40, -20, -0.5, -40, 20, -0.5, -40, -20, 0.5, -40, -20, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0tbx"]
+size = Vector3(80, 40, 0.5)
 
 [node name="Wall" type="StaticBody3D"]
 
@@ -17,4 +17,4 @@ mesh = SubResource("BoxMesh_5pfws")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
-shape = SubResource("ConvexPolygonShape3D_e3d6b")
+shape = SubResource("BoxShape3D_i0tbx")

@@ -1,20 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwp8066j1v6jq"]
+[gd_scene load_steps=7 format=3 uid="uid://dg7quiu2ovcbf"]
 
-[ext_resource type="Script" path="res://Enemies/WalkerEnemy.gd" id="1_dseqi"]
-[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="3_liqn6"]
-[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="3_ytp50"]
-[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="5_e55cm"]
+[ext_resource type="Script" path="res://LinearEnemies/WalkerEnemy.gd" id="1_l7x6o"]
+[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="2_t66mb"]
+[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="3_h84jh"]
+[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="4_oxc6a"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
-material = ExtResource("3_liqn6")
+material = ExtResource("2_t66mb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfuh1"]
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
-script = ExtResource("1_dseqi")
+script = ExtResource("1_l7x6o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = ExtResource("3_liqn6")
+material_override = ExtResource("2_t66mb")
 mesh = SubResource("BoxMesh_b3u8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,6 +23,7 @@ shape = SubResource("BoxShape3D_yfuh1")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.35
 target_desired_distance = 1.35
+path_height_offset = 2.0
 avoidance_enabled = true
 radius = 1.8
 neighbor_distance = 10.0
@@ -34,11 +35,11 @@ autostart = true
 [node name="Audio" type="Node3D" parent="."]
 
 [node name="EnemySpawn" type="AudioStreamPlayer3D" parent="Audio"]
-stream = ExtResource("3_ytp50")
+stream = ExtResource("3_h84jh")
 max_distance = 800.0
 
 [node name="HitPlayer" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("5_e55cm")
+stream = ExtResource("4_oxc6a")
 pitch_scale = 0.5
 max_polyphony = 2
 

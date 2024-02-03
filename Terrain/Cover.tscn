@@ -1,25 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpiu1ia48s01"]
+[gd_scene load_steps=5 format=3 uid="uid://cpiu1ia48s01"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq3f7"]
-albedo_color = Color(0.145098, 0.145098, 0.145098, 1)
-albedo_texture_force_srgb = true
-albedo_texture_msdf = true
-metallic = 0.1
-metallic_specular = 0.55
-roughness = 0.77
-rim_enabled = true
+[ext_resource type="Script" path="res://Terrain/Cover.gd" id="1_guors"]
+[ext_resource type="Material" uid="uid://br4ggf1c0yjh4" path="res://LinearEnemies/Materials/Cover.tres" id="1_sfqyf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5pfws"]
-material = SubResource("StandardMaterial3D_gq3f7")
+material = ExtResource("1_sfqyf")
 size = Vector3(2, 1, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mg51i"]
 points = PackedVector3Array(1, 0.5, 0.5, 1, 0.5, -0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, 1, -0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, -0.5)
 
-[node name="CoverMesh" type="MeshInstance3D"]
+[node name="CoverMesh" type="MeshInstance3D" groups=["enemies"]]
+material_override = ExtResource("1_sfqyf")
 mesh = SubResource("BoxMesh_5pfws")
 
-[node name="Cover" type="StaticBody3D" parent="."]
+[node name="Cover" type="StaticBody3D" parent="." groups=["enemies"]]
+script = ExtResource("1_guors")
 
 [node name="CoverColision" type="CollisionShape3D" parent="Cover"]
 shape = SubResource("ConvexPolygonShape3D_mg51i")

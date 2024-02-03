@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d33kbyxt51qy"]
+[gd_scene load_steps=7 format=3 uid="uid://d33kbyxt51qy"]
 
 [ext_resource type="PackedScene" uid="uid://cpiu1ia48s01" path="res://Terrain/Cover.tscn" id="1_pumfv"]
 [ext_resource type="PackedScene" uid="uid://rx3nopad48kj" path="res://Terrain/Pillar.tscn" id="2_xu22k"]
 [ext_resource type="PackedScene" uid="uid://ddby7lfhv0dc3" path="res://Terrain/Wall.tscn" id="3_6p3vs"]
 [ext_resource type="PackedScene" uid="uid://xptful5mm0bi" path="res://Terrain/Cube.tscn" id="4_26car"]
+[ext_resource type="PackedScene" uid="uid://bq05l0d31qrig" path="res://Terrain/BgBuildings.tscn" id="5_0yote"]
+[ext_resource type="PackedScene" uid="uid://dmdcu8vt2t2lj" path="res://Terrain/BgPillar.tscn" id="6_m4hb5"]
 
 [node name="MeshLib" type="Node3D"]
 
@@ -15,3 +17,9 @@
 
 [node name="Cube" parent="." instance=ExtResource("4_26car")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453824, 0.0854335, 0.5)
+
+[node name="BgBuildings" parent="." instance=ExtResource("5_0yote")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403961, 1.20329, 0.5)
+
+[node name="BgPillar" parent="." instance=ExtResource("6_m4hb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29186, 0, -14.5068)

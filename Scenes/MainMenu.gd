@@ -19,3 +19,10 @@ func _on_resume_button_pressed():
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://Scenes/World.tscn")
 	pass # Replace with function body.
+
+
+func _on_play_button_pressed():
+	FADEOUT = true
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://Scenes/LinearLevels/Level1.tscn")
+	pass # Replace with function body.

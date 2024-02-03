@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0fp2iq27w3x5"]
+[gd_scene load_steps=4 format=3 uid="uid://c0fp2iq27w3x5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3pqvb"]
 albedo_color = Color(0.298039, 0.298039, 0.298039, 1)
@@ -15,11 +15,16 @@ anisotropy_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_xb77y"]
 material = SubResource("StandardMaterial3D_3pqvb")
-radius = 50.0
-height = 100.0
+radius = 200.0
+height = 400.0
 
-[node name="BgPillars" type="StaticBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_70yeg"]
+radius = 200.0
+
+[node name="BGSPHERE" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
 mesh = SubResource("SphereMesh_xb77y")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_70yeg")

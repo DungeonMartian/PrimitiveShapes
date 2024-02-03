@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwn0oa2dc613s"]
+[gd_scene load_steps=8 format=3 uid="uid://c67wy7qljc4gd"]
 
-[ext_resource type="Script" path="res://Enemies/WalkerEiltes/WalkerEliteGreen.gd" id="1_87xxe"]
-[ext_resource type="Material" uid="uid://eh6oibjcrp2j" path="res://Enemies/Materials/fastEnemy.tres" id="2_0a3j6"]
-[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="2_6a453"]
-[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="4_gmmua"]
-[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="5_6xln6"]
+[ext_resource type="Script" path="res://Enemies/WalkerEiltes/WalkerEliteGreen.gd" id="1_wximc"]
+[ext_resource type="Material" uid="uid://eh6oibjcrp2j" path="res://Enemies/Materials/fastEnemy.tres" id="2_pqguv"]
+[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="3_0whtv"]
+[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="4_dbk34"]
+[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="5_rcx7b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
-material = ExtResource("2_6a453")
+material = ExtResource("3_0whtv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vosqv"]
 
 [node name="Green" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-script = ExtResource("1_87xxe")
+script = ExtResource("1_wximc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = ExtResource("2_0a3j6")
+material_override = ExtResource("2_pqguv")
 mesh = SubResource("BoxMesh_b3u8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -37,11 +37,11 @@ autostart = true
 [node name="Audio" type="Node3D" parent="."]
 
 [node name="EnemySpawn" type="AudioStreamPlayer3D" parent="Audio"]
-stream = ExtResource("4_gmmua")
+stream = ExtResource("4_dbk34")
 max_distance = 800.0
 
 [node name="HitPlayer" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("5_6xln6")
+stream = ExtResource("5_rcx7b")
 pitch_scale = 0.5
 max_polyphony = 2
 

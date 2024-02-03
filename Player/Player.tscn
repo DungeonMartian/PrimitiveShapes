@@ -1,16 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckmnya8f8xdtb"]
+[gd_scene load_steps=15 format=3 uid="uid://ckmnya8f8xdtb"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_bjiod"]
 [ext_resource type="AudioStream" uid="uid://4nnn828w5txf" path="res://Sounds/Effects/Player/shot-and-reload-6158.mp3" id="2_peewm"]
 [ext_resource type="Material" uid="uid://b7yrxbnegr6fg" path="res://Enemies/Materials/Walls.tres" id="2_ulgvb"]
 [ext_resource type="AudioStream" uid="uid://cpgc5qjic3o2m" path="res://Sounds/Effects/Player/whoosh-blow-flutter-shortwav-14678.mp3" id="3_ddlfe"]
+[ext_resource type="AudioStream" uid="uid://n7d84n1jxvlw" path="res://Sounds/Effects/Player/earth-rumble-6953.mp3" id="5_4bwai"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ixkt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5e1dg"]
 material = SubResource("StandardMaterial3D_5ixkt")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oanau"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ei0e"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yahmm"]
@@ -18,6 +19,68 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="BoxMesh" id="BoxMesh_u0tw8"]
 material = ExtResource("2_ulgvb")
 size = Vector3(0.1, 0.1, 0.5)
+
+[sub_resource type="Animation" id="Animation_xbrv1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.745395)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.353846, -0.193828, -0.070914)]
+}
+
+[sub_resource type="Animation" id="Animation_v1m1r"]
+resource_name = "Reload"
+length = 1.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.85, 1.2, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.745395), Vector3(0, 0, 0.745395), Vector3(0, 0, 0.745395), Vector3(-0.493195, 0, 0.745395), Vector3(0, 0, 0.745395)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.05, 0.25, 1.05, 1.45, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.353846, -0.193828, -0.070914), Vector3(0.353846, -0.193828, -0.070914), Vector3(0.353846, -0.193828, -0.0230566), Vector3(0.353846, -0.193828, -0.070914), Vector3(0.353846, -0.193828, -0.070914), Vector3(0.353846, -0.193828, -0.106887), Vector3(0.353846, -0.193828, -0.070914)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wj6jr"]
+_data = {
+"RESET": SubResource("Animation_xbrv1"),
+"Reload": SubResource("Animation_v1m1r")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2547"]
 bg_color = Color(0.827451, 0, 0, 1)
@@ -36,8 +99,8 @@ script = ExtResource("1_bjiod")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5e1dg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_oanau")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_7ei0e")
 
 [node name="Head" type="Node3D" parent="."]
 
@@ -54,23 +117,31 @@ transform = Transform3D(0.73482, -0.678262, 0, 0.678262, 0.73482, 0, 0, 0, 1, 0.
 mesh = SubResource("BoxMesh_u0tw8")
 skeleton = NodePath("../../..")
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/ShotGun"]
+libraries = {
+"": SubResource("AnimationLibrary_wj6jr")
+}
+
+[node name="rayContainer" type="Node3D" parent="Head/Camera3D/ShotGun"]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, -0.0272776)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D/ShotGun/rayContainer"]
 transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
+[node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3D/ShotGun/rayContainer"]
 transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D3" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
+[node name="RayCast3D3" type="RayCast3D" parent="Head/Camera3D/ShotGun/rayContainer"]
 transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D4" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
+[node name="RayCast3D4" type="RayCast3D" parent="Head/Camera3D/ShotGun/rayContainer"]
 transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
-[node name="RayCast3D5" type="RayCast3D" parent="Head/Camera3D/ShotGun"]
+[node name="RayCast3D5" type="RayCast3D" parent="Head/Camera3D/ShotGun/rayContainer"]
 transform = Transform3D(0.998739, 0.00116432, 0.0501965, 0.00116423, 0.998925, -0.046333, -0.0501965, 0.046333, 0.997664, 0, 0, -0.29379)
 target_position = Vector3(0, 0, -100)
 
@@ -161,6 +232,16 @@ volume_db = -2.5
 [node name="Dash" type="AudioStreamPlayer" parent="Audios"]
 stream = ExtResource("3_ddlfe")
 
+[node name="FreezeRumbke" type="AudioStreamPlayer" parent="Audios"]
+stream = ExtResource("5_4bwai")
+autoplay = true
+
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="pressed" from="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

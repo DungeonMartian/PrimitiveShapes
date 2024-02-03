@@ -1,12 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://xptful5mm0bi"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vu6j4"]
-albedo_color = Color(0.494118, 0.494118, 0.494118, 1)
-metallic = 0.92
-metallic_specular = 0.3
+[ext_resource type="Material" uid="uid://y7iw8ef11jq8" path="res://Terrain/Wall.tres" id="1_heyn1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5xe24"]
-material = SubResource("StandardMaterial3D_vu6j4")
+material = ExtResource("1_heyn1")
 size = Vector3(2.01, 2.01, 2.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r0yif"]

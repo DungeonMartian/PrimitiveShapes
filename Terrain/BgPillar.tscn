@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmdcu8vt2t2lj"]
+
+[ext_resource type="Material" uid="uid://c14ivlrpkk2ry" path="res://LinearEnemies/Materials/Walls.tres" id="1_w8r3n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_srd62"]
+material = ExtResource("1_w8r3n")
+size = Vector3(50, 200, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_auy1d"]
+size = Vector3(50, 200, 50)
+
+[node name="BgPillar" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_srd62")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_auy1d")
