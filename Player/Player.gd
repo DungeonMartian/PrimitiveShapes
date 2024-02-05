@@ -90,7 +90,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("freeze") && !is_on_floor():
 		freeze()
 	if Input.is_action_just_released("freeze"):
-		unfreeze()
+		UnfreezePlus()
+		#unfreeze()
 		
 	if Input.is_action_just_pressed("shoot") && reloaded == true:
 		shootGun()
@@ -201,6 +202,21 @@ func unfreeze():
 	frozen = false
 	$Audios/FreezeRumbke.set_stream_paused(true)
 	screenShakeOff()
+
+func UnfreezePlus():
+	if frozen:
+		freezeVel = Vector3(0,0,0) 
+		velocity = Vector3(50*direction.x,25* headDir.y,50*direction.z)
+
+		#velocity.x =  50*direction
+		#velocity.z =  50*direction
+		#velocity.y = 10* headDir
+		velocity.normalized()
+		move_and_slide()
+	frozen = false
+	$Audios/FreezeRumbke.set_stream_paused(true)
+	screenShakeOff()
+	pass
 
 func dashUnfreeze():
 	freezeVel = Vector3(0,0,0) 
