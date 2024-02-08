@@ -8,10 +8,10 @@ var newPosx
 var curPosz
 var newPosz
 
-var canJump:bool
+var canJump:bool = true
 var dying :bool= false
 
-var JUMP_VELOCITY :float= 6.0 
+var JUMP_VELOCITY :float= 10.0 
 var gravity :int =12
 var damage :int= 5
 var health :int= 1
@@ -67,8 +67,10 @@ func update_target_location(target_location):
 	
 	if direction.length() > 1 && !Search:
 		ATTACK = false
-	if direction.length() < 3.5:
+	if direction.length() < 3.5 :
 		ATTACK = true
+		if canJump:
+			tryJump()
 	if direction.length() < 30 && get_node("/root/Level1").combat == true:
 		ATTACK = true 
 	

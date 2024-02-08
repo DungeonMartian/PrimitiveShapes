@@ -19,14 +19,18 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.health -= damage
 		body.ATTACK = true
-		#var b = spawnEffect.instantiate()
-		#add_child(b)
-		queue_free()
+		var g = spawnEffect.instantiate()
+		get_node("/root/Level1").add_child(g)
+		g.global_transform = global_transform
+		g.set_emitting(true)
+		
+		self.queue_free()
 	elif body.is_in_group("player"):
 		pass
 	else:
-		#var b = spawnEffect.instantiate()
-		#add_child(b)
-		#b.position = position
-		#remove_child(b)
-		queue_free()
+		var g = spawnEffect.instantiate()
+		get_node("/root/Level1").add_child(g)
+		g.global_transform = global_transform
+		g.set_emitting(true)
+		#remove_child(g)
+		self.queue_free()
