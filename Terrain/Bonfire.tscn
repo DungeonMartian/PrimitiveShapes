@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://6r6mtmnc3mpb"]
+[gd_scene load_steps=6 format=3 uid="uid://6r6mtmnc3mpb"]
 
 [ext_resource type="Script" path="res://Terrain/Bonfire.gd" id="1_sria4"]
-[ext_resource type="Material" uid="uid://br4ggf1c0yjh4" path="res://LinearEnemies/Materials/Cover.tres" id="2_8tgrk"]
+[ext_resource type="Material" uid="uid://dq0motf8wsyik" path="res://LinearEnemies/Materials/Bonfire.tres" id="2_o347d"]
+[ext_resource type="AudioStream" uid="uid://dhu73w8x4heqd" path="res://Sounds/Effects/Player/click-button-app-147358.mp3" id="3_cdxfh"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i6nft"]
-material = ExtResource("2_8tgrk")
+material = ExtResource("2_o347d")
 top_radius = 1.0
 bottom_radius = 1.0
 height = 0.1
@@ -27,5 +28,8 @@ mesh = SubResource("CylinderMesh_i6nft")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11339, 0)
 shape = SubResource("CylinderShape3D_aqhkv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cdxfh")
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

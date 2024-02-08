@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnelf7kovc5ho"]
+
+[ext_resource type="Script" path="res://LinearEnemies/WalkerEiltes/Mimic.gd" id="1_33jrw"]
+[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="3_btiav"]
+[ext_resource type="Material" uid="uid://c14ivlrpkk2ry" path="res://LinearEnemies/Materials/Walls.tres" id="3_k3c21"]
+[ext_resource type="AudioStream" uid="uid://o5qfcvw51d2p" path="res://Sounds/Effects/086258_concrete-hit-83770.mp3" id="4_f0wxp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
+material = ExtResource("3_k3c21")
+size = Vector3(1.99, 1.99, 1.99)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfuh1"]
+size = Vector3(1.9, 1.9, 1.9)
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_33jrw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("3_k3c21")
+mesh = SubResource("BoxMesh_b3u8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yfuh1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+path_height_offset = 2.5
+avoidance_enabled = true
+radius = 1.8
+neighbor_distance = 10.0
+
+[node name="jumpTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="EnemySpawn" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("3_btiav")
+max_distance = 800.0
+
+[node name="HitPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_f0wxp")
+pitch_scale = 0.5
+max_polyphony = 2
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="jumpTimer" to="." method="_on_jump_timer_timeout"]

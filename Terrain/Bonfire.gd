@@ -7,3 +7,4 @@ func _on_area_3d_body_entered(body):
 		body.spawner.position = position
 		body.playerHealth = body.MAXHP
 		body.set_health_bar()
+		$AudioStreamPlayer.play()

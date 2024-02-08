@@ -25,6 +25,7 @@ shape = SubResource("BoxShape3D_dvwbx")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 3.2
 target_desired_distance = 3.2
+path_height_offset = 1.5
 avoidance_enabled = true
 radius = 2.0
 

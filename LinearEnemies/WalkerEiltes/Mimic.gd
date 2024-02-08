@@ -8,26 +8,27 @@ var newPosx
 var curPosz
 var newPosz
 
-var canJump
-var dying = false
+var canJump:bool
+var dying :bool= false
 
-var JUMP_VELOCITY :float= 7.0 
-var gravity :int =14
-var damage :int= 3
-var health :int= 60
+var JUMP_VELOCITY :float= 6.0 
+var gravity :int =12
+var damage :int= 5
+var health :int= 1
 var speed :float = 3.5
 
+var ATTACK : bool = false
 
-
-var ATTACK
 var Search : bool = false
 
 var direction : Vector3 = Vector3(100000,0,100000)
 signal combat
 
+
 #@export var playerPos:NodePath
-@onready var player
+@onready var player #= "../../../Player"
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+
 
 
 func _ready():
@@ -66,8 +67,10 @@ func update_target_location(target_location):
 	
 	if direction.length() > 1 && !Search:
 		ATTACK = false
-	if direction.length() < 30:
+	if direction.length() < 3.5:
 		ATTACK = true
+	if direction.length() < 30 && get_node("/root/Level1").combat == true:
+		ATTACK = true 
 	
 	if ATTACK == true:
 		
