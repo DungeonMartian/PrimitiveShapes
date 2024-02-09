@@ -14,19 +14,20 @@ var canDash :int =2
 var spread : int = 10
 var reloaded : bool = true
 
-
 const MAXHP : int = 50
 var playerHealth :int = MAXHP
 var canHurt :bool = true
 var score :int = 0
 var freezeVel : Vector3 
 var frozen : bool = false
+var canPlatform : bool = true
 
 
 @onready var shotgun = $Head/Camera3D/ShotGun
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var bullet = preload("res://Player/Bullet.tscn")
+@onready var platform = preload("res://Player/Platform.tscn")
 @onready var animPlayer : AnimationPlayer =  $Head/Camera3D/ShotGun/AnimationPlayer
 
 var hOffSet : float
@@ -84,8 +85,8 @@ func Hit(dir, damage):
 		canHurt = false
 		$HurtTimer.start()
 	velocity += dir * HITSTAGGER * damage
-	pass
-		
+
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("freeze") && !is_on_floor():
 		freeze()
@@ -99,6 +100,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("leap") && !frozen:
 		Leap(delta)
 	
+	if Input.is_action_just_pressed("platform") && canPlatform:
+		Platform()
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -175,26 +179,27 @@ func screenShakeDur(quant, quant2, dur):
 	$Head/Camera3D/Aim.visible = false
 	await get_tree().create_timer(dur).timeout
 	screenShakeOff()
-	pass
+
 
 func screenShake(quant, quant2):
 	camera.set_h_offset(quant)
 	camera.set_v_offset(quant2)
-	pass
+
 
 
 func screenShakeOff():
 	camera.set_h_offset(0)
 	camera.set_v_offset(0)
 	$Head/Camera3D/Aim.visible = true
-	pass
+
 
 func freeze():
 	freezeVel = velocity
 	velocity = Vector3(0,0,0)
 	frozen = true
 	$Audios/FreezeRumbke.set_stream_paused(false)
-	
+
+
 func unfreeze():
 	if frozen:
 		velocity = freezeVel
@@ -202,6 +207,7 @@ func unfreeze():
 	frozen = false
 	$Audios/FreezeRumbke.set_stream_paused(true)
 	screenShakeOff()
+
 
 func UnfreezePlus():
 	if frozen:
@@ -218,27 +224,48 @@ func UnfreezePlus():
 	screenShakeOff()
 	pass
 
+
 func dashUnfreeze():
 	freezeVel = Vector3(0,0,0) 
 	frozen = false
 	$Audios/FreezeRumbke.set_stream_paused(true)
 	screenShakeOff()
+	
+
+
+func Platform():
+	var p = platform.instantiate()
+	p.global_transform = self.global_transform
+	get_node("/root/Level1").add_child(p)
+	p.look_at(Vector3($Head/Camera3D/ShotGun/rayContainer/RayCast3D.get_collision_point().x, p.position.y, $Head/Camera3D/ShotGun/rayContainer/RayCast3D.get_collision_point().z), Vector3.UP)
+	print(p.global_transform.basis)
+	var newDirection = global_transform.basis * Vector3(0,0,0).normalized()
+	p.velocity.z = 2.0 * newDirection.z
+	p.velocity.x = 2.0 * newDirection.x
+	canPlatform = false
+	$PlatformTimer.start()
+
+
+
 
 func _on_menu_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
-	pass # Replace with function body.
+	
 
 
 func _on_retry_button_pressed():
 	get_tree().paused=false
 	$Control/ColorRect.visible = false
 	emit_signal("player_died")
-	#queue_free()
+
 	
-	pass # Replace with function body.
+
 
 
 func _on_hurt_timer_timeout():
 	canHurt = true
-	pass # Replace with function body.
+
+func _on_platform_timer_timeout():
+	canPlatform = true
+

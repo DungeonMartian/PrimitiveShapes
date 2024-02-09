@@ -25,6 +25,7 @@ shape = SubResource("BoxShape3D_vosqv")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.35
 target_desired_distance = 1.35
+path_height_offset = 2.0
 avoidance_enabled = true
 
 [node name="jumpTimer" type="Timer" parent="."]

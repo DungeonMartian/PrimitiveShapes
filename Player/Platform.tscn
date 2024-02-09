@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://7papoqwljhov"]
+
+[ext_resource type="Script" path="res://Player/Platform.gd" id="1_2da2g"]
+[ext_resource type="Material" uid="uid://dq0motf8wsyik" path="res://LinearEnemies/Materials/Bonfire.tres" id="1_pta34"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vq4op"]
+size = Vector3(2, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3e1k2"]
+material = ExtResource("1_pta34")
+size = Vector3(2, 1, 4)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_2da2g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vq4op")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3e1k2")
+skeleton = NodePath("")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

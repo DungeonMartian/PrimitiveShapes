@@ -67,11 +67,11 @@ func update_target_location(target_location):
 	
 	if direction.length() > 1 && !Search:
 		ATTACK = false
-	if direction.length() < 3.5 :
+	if direction.length() < 5 :
 		ATTACK = true
 		if canJump:
 			tryJump()
-	if direction.length() < 30 && get_node("/root/Level1").combat == true:
+	if direction.length() < 35 && get_node("/root/Level1").combat == true:
 		ATTACK = true 
 	
 	if ATTACK == true:
