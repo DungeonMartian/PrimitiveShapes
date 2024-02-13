@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmqorbn6mhh6c"]
+
+[ext_resource type="Texture2D" uid="uid://dige6hfc5mak3" path="res://Terrain/Furniture/gltf/furniturebits_texture.png" id="1_tm1u7"]
+
+[resource]
+resource_name = "furniture_texture"
+albedo_texture = ExtResource("1_tm1u7")
+roughness = 0.5

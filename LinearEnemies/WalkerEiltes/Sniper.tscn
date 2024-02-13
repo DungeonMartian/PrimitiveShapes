@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bv4fi1qs0dsd"]
+
+[ext_resource type="Script" path="res://LinearEnemies/WalkerEiltes/SniperSnemy.gd" id="1_i4j25"]
+[ext_resource type="Material" uid="uid://br4ggf1c0yjh4" path="res://LinearEnemies/Materials/Cover.tres" id="2_03r5b"]
+[ext_resource type="Material" uid="uid://g21jxb8p22cq" path="res://Enemies/Materials/normalEnemy.tres" id="2_8g6w4"]
+[ext_resource type="AudioStream" uid="uid://c1mmuvmn0drvy" path="res://Sounds/Effects/can-sliding-across-wooden-desk-98693.mp3" id="3_tld3x"]
+[ext_resource type="Material" uid="uid://djwy27i6bxx52" path="res://LinearEnemies/Materials/damageEnemy.tres" id="5_n88vl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
+material = ExtResource("2_8g6w4")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ghlwd"]
+material = ExtResource("2_03r5b")
+size = Vector3(0.3, 0.3, 0.98)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2w53u"]
+size = Vector3(0.3, 0.3, 0.98)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfuh1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6yuec"]
+material = ExtResource("5_n88vl")
+top_radius = 0.001
+bottom_radius = 0.001
+height = 150.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mbbn8"]
+radius = 150.0
+
+[node name="Sniper" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_i4j25")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_03r5b")
+mesh = SubResource("BoxMesh_b3u8c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.343892, 0.6, 0)
+mesh = SubResource("BoxMesh_ghlwd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/MeshInstance3D"]
+shape = SubResource("BoxShape3D_2w53u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.344798, 0.6, 0)
+mesh = SubResource("BoxMesh_ghlwd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00425589, 0, 0)
+shape = SubResource("BoxShape3D_2w53u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yfuh1")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="EnemySpawn" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("3_tld3x")
+max_distance = 800.0
+
+[node name="Eyes" type="Node3D" parent="."]
+
+[node name="Aim" type="RayCast3D" parent="Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.636395)
+target_position = Vector3(0, 0, 100)
+hit_from_inside = true
+hit_back_faces = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Eyes/Aim"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -78)
+visible = false
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6yuec")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_mbbn8")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="BulletLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748023, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

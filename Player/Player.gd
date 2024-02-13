@@ -10,9 +10,15 @@ const UPDASH : int = 50
 
 var direction
 var headDir
-var canDash :int =2 
+var maxDash : int = 0
+var canDash :int =0
 var spread : int = 10
 var reloaded : bool = true
+var maxLeaps : int = 0
+var leapsQuant : int = 0
+var maxPlatform : bool = true
+var canFreeze : bool = true
+var freezeUnlock : bool =true
 
 const MAXHP : int = 50
 var playerHealth :int = MAXHP
@@ -21,6 +27,7 @@ var score :int = 0
 var freezeVel : Vector3 
 var frozen : bool = false
 var canPlatform : bool = true
+var seeSecrets : bool = false
 
 
 @onready var shotgun = $Head/Camera3D/ShotGun
@@ -30,11 +37,14 @@ var canPlatform : bool = true
 @onready var platform = preload("res://Player/Platform.tscn")
 @onready var animPlayer : AnimationPlayer =  $Head/Camera3D/ShotGun/AnimationPlayer
 
+
 var hOffSet : float
 var vOffSet : float
 
 var gravity : float = 9.8
 var fov : int =85
+
+
 
 signal player_hit
 signal player_died
@@ -42,6 +52,12 @@ signal player_died
 func _ready():
 	self.player_died.connect(get_parent()._on_player_player_died)
 	self.player_hit.connect(get_parent()._on_player_player_hit)
+	maxDash = get_node("/root/Level1").maxDash
+	maxLeaps = get_node("/root/Level1").maxLeap
+	maxPlatform =  get_node("/root/Level1").maxPlatform
+	canFreeze = get_node("/root/Level1").canFreeze
+	freezeUnlock = get_node("/root/Level1").freezeUnlock
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = fov
 	randomize()	
@@ -52,14 +68,15 @@ func _ready():
 func set_health_bar():
 	if playerHealth > MAXHP:
 		playerHealth = MAXHP
-	if playerHealth < 0:
+	
+	if playerHealth <=0 && get_parent() == get_node("/root/Level1"):
+		queue_free()
+	elif playerHealth <= 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused=true
 		$Control/ColorRect/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Label.text = "You Died! 
 		" + str(score)
 		$Control/ColorRect.visible = true
-	if playerHealth <0 && get_parent() == get_node("/root/Level1"):
-		queue_free()
 	$Control/Health.value = playerHealth
 
 
@@ -88,24 +105,34 @@ func Hit(dir, damage):
 
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("freeze") && !is_on_floor():
+	if Input.is_action_just_pressed("freeze") && !is_on_floor() && canFreeze:
 		freeze()
 	if Input.is_action_just_released("freeze"):
-		UnfreezePlus()
-		#unfreeze()
+		if freezeUnlock:
+			UnfreezePlus()
+		else:
+			unfreeze()
+
+		
+	#if Input.is_action_just_pressed("secrets") && seeSecrets == true:
+	#	secretsOn()
+	
+	#if Input.is_action_just_pressed("secrets") && seeSecrets == false:
+	#	secretsOff()
 		
 	if Input.is_action_just_pressed("shoot") && reloaded == true:
 		shootGun()
 		
-	if Input.is_action_just_pressed("leap") && !frozen:
-		Leap(delta)
 	
-	if Input.is_action_just_pressed("platform") && canPlatform:
+	if Input.is_action_just_pressed("platform") && canPlatform && maxPlatform:
 		Platform()
 		
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	if Input.is_action_just_pressed("jump") and !is_on_floor() && !frozen:
+		Leap(delta)
 
 	if frozen:
 		screenShake(randf_range(.05, -.05), randf_range(.05, -.05))
@@ -117,7 +144,8 @@ func _physics_process(delta):
 	headDir = (camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		$Audios/Dash.stop()
-		canDash = 2
+		canDash =  maxDash
+		leapsQuant = maxLeaps 
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
@@ -164,10 +192,10 @@ func Dash(delta):
 		velocity.y = lerp(velocity.y, (headDir.y * UPDASH) + 10, delta *7)
 
 func Leap(_delta):
-	#if canDash > 0:
+	if leapsQuant > 0:
 		$Audios/Dash.play()
-		velocity.y = 20
-		#canDash -=1
+		velocity.y = 6
+		leapsQuant  -=1
 		#velocity.y = lerp(velocity.y, 200.0 , delta *5)
 
 func _on_reload_timeout():
@@ -234,19 +262,43 @@ func dashUnfreeze():
 
 
 func Platform():
+	#make platform
 	var p = platform.instantiate()
-	p.global_transform = self.global_transform
+	#move platform to self
+	p.global_transform = $Head/Camera3D/Aim/PlatformSpawner.global_transform
+	#Make platform child of toplevel
 	get_node("/root/Level1").add_child(p)
+	#change platform rotation to face player facing 
 	p.look_at(Vector3($Head/Camera3D/ShotGun/rayContainer/RayCast3D.get_collision_point().x, p.position.y, $Head/Camera3D/ShotGun/rayContainer/RayCast3D.get_collision_point().z), Vector3.UP)
-	print(p.global_transform.basis)
-	var newDirection = global_transform.basis * Vector3(0,0,0).normalized()
-	p.velocity.z = 2.0 * newDirection.z
-	p.velocity.x = 2.0 * newDirection.x
+
+	p.shoot = true
+	
+	#get platform rotation
+	#var newDirection = (global_transform.basis * Vector3(1,1,1)).normalized()
+	#add velocity? this doesn't work
+	
+	#p.velocity.z = 2.0 * newDirection.z
+	#p.velocity.x = 2.0 * newDirection.x
+	#direction = position.direction_to(position + velocity)
+	#player controller stuff
 	canPlatform = false
 	$PlatformTimer.start()
 
 
+func secretsOn():
+	seeSecrets = true
+	var enemyRecolour = get_tree().get_nodes_in_group("enemies") 
+	for i in enemyRecolour:
+		enemyRecolour.set_surface_override_material ( 1,  "res://LinearEnemies/Materials/Bonfire.tres")
+	pass
 
+func secretsOff():
+	seeSecrets = false
+	var enemyRecolour = get_tree().get_nodes_in_group("enemies") 
+	for i in enemyRecolour:
+		i.set_surface_override_material ( 1,  null)
+	
+	pass
 
 func _on_menu_button_pressed():
 	get_tree().paused = false

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4sdv15jof1vm"]
+
+[ext_resource type="Script" path="res://Terrain/Upgrades/FreezeUnlock.gd" id="1_y2jvm"]
+[ext_resource type="Material" uid="uid://d2wg7d0be16tc" path="res://LinearEnemies/Materials/ItemPlatform.tres" id="2_82ool"]
+[ext_resource type="Material" uid="uid://dq0motf8wsyik" path="res://LinearEnemies/Materials/Bonfire.tres" id="3_jkfg7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0h0p2"]
+material = ExtResource("2_82ool")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.05
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g24ko"]
+radius = 1.2
+height = 5.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5n35y"]
+material = ExtResource("3_jkfg7")
+radius = 0.25
+height = 1.0
+
+[node name="FreezeUnlock" type="StaticBody3D"]
+script = ExtResource("1_y2jvm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_0h0p2")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_g24ko")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74404, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27098, 0)
+mesh = SubResource("CapsuleMesh_5n35y")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -7,10 +7,10 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3u8c"]
 material = ExtResource("2_5lsg1")
-size = Vector3(3, 3, 3)
+size = Vector3(4, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dvwbx"]
-size = Vector3(3, 3, 3)
+size = Vector3(4, 4, 4)
 
 [node name="Large" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_62ied")
@@ -23,8 +23,8 @@ mesh = SubResource("BoxMesh_b3u8c")
 shape = SubResource("BoxShape3D_dvwbx")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 3.2
-target_desired_distance = 3.2
+path_desired_distance = 4.2
+target_desired_distance = 4.2
 path_height_offset = 1.5
 avoidance_enabled = true
 radius = 2.0

@@ -5,6 +5,12 @@ var player
 var spawner = null
 var combat : bool = false
 
+var maxDash : int =0
+var maxLeap : int=0
+var maxPlatform : bool = false
+var canFreeze : bool = false
+var freezeUnlock : bool = false
+
 func _ready():
 	randomize()
 	
@@ -21,10 +27,18 @@ func _physics_process(_delta):
 		if !$Audio/Music.is_playing():
 			$Audio/Music.set_volume_db(-2)
 			$Audio/Music.play()
-			
+	
+	if Input.is_action_just_pressed("devUnlock"):
+		devUnlock()
 
 	
-
+func devUnlock():
+	maxDash +=3
+	maxLeap += 3
+	maxPlatform = true
+	canFreeze = true
+	freezeUnlock = true
+	pass
 
 
 func _on_player_player_died():
@@ -61,3 +75,7 @@ func _on_combat_timerout_timeout():
 
 
 
+
+
+func _on_disable_timeout():
+	$UI/Helper.visible = false

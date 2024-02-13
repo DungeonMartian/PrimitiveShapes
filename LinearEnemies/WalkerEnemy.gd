@@ -29,7 +29,7 @@ signal combat
 @onready var player #= "../../../Player"
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
-
+@onready var jumpTimer = $jumpTimer
 
 func _ready():
 	self.combat.connect(get_parent().get_parent().get_parent()._on_enemy_combat)
@@ -87,7 +87,7 @@ func update_target_location(target_location):
 				tryJump()
 				pass
 			canJump = true
-			$jumpTimer.paused = false
+			jumpTimer.paused = false
 
 	
 
@@ -143,5 +143,5 @@ func _on_jump_timer_timeout():
 		curPosz = round(global_position.z)
 		if (newPosx == curPosx) && (newPosz == curPosz) && canJump:
 			tryJump()
-			$jumpTimer.paused = true
+			jumpTimer.paused = true
 	

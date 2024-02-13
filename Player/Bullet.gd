@@ -12,7 +12,7 @@ func _ready():
 func _physics_process(_delta):
 	if shoot:
 		apply_impulse(-transform.basis.z, -transform.basis.z)
-	pass
+		shoot = false
 
 
 func _on_area_3d_body_entered(body):
