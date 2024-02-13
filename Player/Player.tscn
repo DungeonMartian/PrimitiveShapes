@@ -109,6 +109,7 @@ shape = SubResource("ConvexPolygonShape3D_7ei0e")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752259, 0)
+fov = 90.0
 
 [node name="Aim" type="Sprite3D" parent="Head/Camera3D"]
 transform = Transform3D(0.170284, 0, 0, 0, 0.170284, 0, 0, 0, 1.0015, 0, 0, -0.080263)

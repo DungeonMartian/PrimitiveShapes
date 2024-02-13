@@ -5,8 +5,8 @@ var player
 var spawner = null
 var combat : bool = false
 
-var maxDash : int =0
-var maxLeap : int=0
+var maxDash : int =1
+var maxLeap : int=2
 var maxPlatform : bool = false
 var canFreeze : bool = false
 var freezeUnlock : bool = false

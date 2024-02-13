@@ -194,7 +194,10 @@ func Dash(delta):
 func Leap(_delta):
 	if leapsQuant > 0:
 		$Audios/Dash.play()
-		velocity.y = 6
+		if velocity.y >= 0:
+			velocity.y += 6
+		else:
+			velocity.y = 7
 		leapsQuant  -=1
 		#velocity.y = lerp(velocity.y, 200.0 , delta *5)
 
